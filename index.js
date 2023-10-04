@@ -173,6 +173,15 @@ class Tree {
     }
     return values;
   }
+  inOrder(callback = (e) => values.push(e), node = this.root, values = []) {
+    if (!node) return;
+    if (node) {
+      if (node.left) this.inOrder(callback, node.left, values);
+      callback(node.data);
+      if (node.right) this.inOrder(callback, node.right, values);
+    }
+    return values;
+  }
 }
 
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -182,5 +191,6 @@ tree.buildTree(arr, 0, arr.length - 1);
 // tree.delete(5);
 // tree.levelOrder((e) => console.log(`item ${e}`));
 // const preorder = tree.preOrder((e) => console.log(e));
+// const inOrder = tree.inOrder((e) => console.log(e));
 
 tree.prettyPrint();
