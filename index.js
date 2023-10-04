@@ -191,6 +191,17 @@ class Tree {
     }
     return values;
   }
+
+  depth(node) {
+    let counter = 0;
+    let root = this.root;
+    while (true) {
+      if (node.data === root.data) return counter;
+      if (node.data > root.data) root = root.right;
+      if (node.data < root.data) root = root.left;
+      counter++;
+    }
+  }
 }
 
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -202,5 +213,9 @@ tree.buildTree(arr, 0, arr.length - 1);
 // const preorder = tree.preOrder((e) => console.log(e));
 // const inOrder = tree.inOrder((e) => console.log(e));
 // const postOrder = tree.postOrder((e) => console.log(e));
+// const height = tree.height();
+// const node = tree.find(5);
+// const depth = tree.depth(node);
 
+console.log(depth);
 tree.prettyPrint();
