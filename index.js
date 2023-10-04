@@ -10,15 +10,8 @@ class Tree {
   constructor(root = null) {
     this.root = root;
   }
-  cleanArray(arr) {
-    // Remove duplicates
-    arr = [...new Set(arr)];
-    // sort arr
-    arr = arr.sort((a, b) => a - b);
-    return arr;
-  }
+
   buildTree(arr, start, end) {
-    arr = this.cleanArray(arr);
     if (start > end) return null;
 
     const middle = Math.floor((start + end) / 2);
@@ -227,10 +220,14 @@ const getRandomArray = (length = 100) => {
   for (let i = 0; i < length; i++) {
     arr.push(Math.floor(Math.random() * length) + 1);
   }
-  return arr;
+  const sortedArr = [...new Set(arr)].sort((a, b) => a - b);
+
+  return sortedArr;
 };
 
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const arr = getRandomArray(100);
+
 const tree = new Tree();
 tree.buildTree(arr, 0, arr.length - 1);
 // tree.insert(11);
@@ -248,5 +245,3 @@ tree.buildTree(arr, 0, arr.length - 1);
 // tree.rebalance();
 
 tree.prettyPrint();
-
-console.log(getRandomArray());
