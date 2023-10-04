@@ -202,6 +202,16 @@ class Tree {
       counter++;
     }
   }
+  isBalanced() {
+    const leftHeight = this.height(this.root.left);
+    const rightHeight = this.height(this.root.right);
+    return Math.abs(leftHeight - rightHeight) <= 1;
+  }
+  rebalance() {
+    if (this.isBalanced()) return 'tree is already balanced';
+    const arr = this.inOrder();
+    this.buildTree(arr, 0, arr.length - 1);
+  }
 }
 
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -217,5 +227,10 @@ tree.buildTree(arr, 0, arr.length - 1);
 // const node = tree.find(5);
 // const depth = tree.depth(node);
 
-console.log(depth);
+tree.insert(11);
+tree.insert(12);
 tree.prettyPrint();
+console.log(tree.isBalanced());
+tree.rebalance();
+tree.prettyPrint();
+console.log(tree.isBalanced());
