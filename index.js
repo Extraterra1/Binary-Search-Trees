@@ -222,6 +222,14 @@ class Tree {
   }
 }
 
+const getRandomArray = (length = 100) => {
+  const arr = [];
+  for (let i = 0; i < length; i++) {
+    arr.push(Math.floor(Math.random() * length) + 1);
+  }
+  return arr;
+};
+
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const tree = new Tree();
 tree.buildTree(arr, 0, arr.length - 1);
@@ -240,3 +248,5 @@ tree.buildTree(arr, 0, arr.length - 1);
 // tree.rebalance();
 
 tree.prettyPrint();
+
+console.log(getRandomArray());
