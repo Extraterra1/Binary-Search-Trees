@@ -144,13 +144,13 @@ class Tree {
     return rHeight + 1;
   }
 
-  levelOrder(callback) {
+  levelOrder(callback = false) {
     const height = this.height();
     const arr = [];
     for (let i = 0; i <= height; i++) {
       this.getLevel(i).forEach((e) => arr.push(e));
     }
-    console.log(arr);
+    if (!callback) return arr;
     arr.forEach((e) => callback(e));
   }
 
@@ -226,7 +226,7 @@ const getRandomArray = (length = 100) => {
 };
 
 // const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const arr = getRandomArray(100);
+const arr = getRandomArray(10);
 
 const tree = new Tree();
 tree.buildTree(arr, 0, arr.length - 1);
@@ -244,4 +244,39 @@ tree.buildTree(arr, 0, arr.length - 1);
 // tree.insert(12);
 // tree.rebalance();
 
-tree.prettyPrint();
+console.log('balanced', tree.isBalanced());
+console.log('Printing Level Order');
+console.log(tree.levelOrder());
+console.log('=======================');
+console.log('Printing Pre Order');
+console.log(tree.preOrder());
+console.log('=======================');
+console.log('Printing In Order');
+console.log(tree.inOrder());
+console.log('=======================');
+console.log('Printing Level Order');
+console.log(tree.postOrder());
+console.log('=======================');
+
+// unbalance
+tree.insert(101);
+tree.insert(102);
+tree.insert(103);
+tree.insert(104);
+tree.insert(105);
+console.log('balanced', tree.isBalanced());
+tree.rebalance();
+console.log('balanced', tree.isBalanced());
+
+console.log('Printing Level Order');
+console.log(tree.levelOrder());
+console.log('=======================');
+console.log('Printing Pre Order');
+console.log(tree.preOrder());
+console.log('=======================');
+console.log('Printing In Order');
+console.log(tree.inOrder());
+console.log('=======================');
+console.log('Printing Level Order');
+console.log(tree.postOrder());
+console.log('=======================');
