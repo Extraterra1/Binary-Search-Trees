@@ -10,7 +10,15 @@ class Tree {
   constructor(root = null) {
     this.root = root;
   }
+  cleanArray(arr) {
+    // Remove duplicates
+    arr = [...new Set(arr)];
+    // sort arr
+    arr = arr.sort((a, b) => a - b);
+    return arr;
+  }
   buildTree(arr, start, end) {
+    arr = this.cleanArray(arr);
     if (start > end) return null;
 
     const middle = Math.floor((start + end) / 2);
@@ -226,11 +234,9 @@ tree.buildTree(arr, 0, arr.length - 1);
 // const height = tree.height();
 // const node = tree.find(5);
 // const depth = tree.depth(node);
+// const isBalanced = tree.isBalanced()
+// tree.insert(11);
+// tree.insert(12);
+// tree.rebalance();
 
-tree.insert(11);
-tree.insert(12);
 tree.prettyPrint();
-console.log(tree.isBalanced());
-tree.rebalance();
-tree.prettyPrint();
-console.log(tree.isBalanced());
